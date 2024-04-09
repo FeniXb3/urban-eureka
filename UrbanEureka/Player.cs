@@ -7,28 +7,67 @@ class Player
     }
     int hp = 90;
     public int MaxHp { get; set; } = 100;
+    public Point Position { get; set; }
 
-    public int X {get; set;}
-    public int Y {get; set;}
+    private Dictionary<ConsoleKey, Point> directions = new()
+    {
+        { ConsoleKey.A, new Point(-1, 0)}
+    };
+
+    public Player(int x, int y)
+    {
+        Position = new Point(x, y);
+    }
+
+    public Player(Point startingPosition)
+    {
+        // Position = new Point(startingPosition.X, startingPosition.Y);
+        Position = new Point(startingPosition);
+        // directions.Add(ConsoleKey.A, new Point(-1, 0));
+        // directions.Add(ConsoleKey.A, new Point(1, 0));
+        // directions[ConsoleKey.A] = new Point(-1, 0);
+        // directions[ConsoleKey.A] = new Point(1, 0);
+        directions[ConsoleKey.D] = new Point(1, 0);
+        directions[ConsoleKey.W] = new Point(0, -1);
+        directions[ConsoleKey.S] = new Point(0, 1);
+        directions[ConsoleKey.E] = new Point(1, -1);
+    }
+    
+    //Copy constructor
+    public Player(Player other)
+    {
+        MaxHp = other.MaxHp;
+        Hp = other.Hp;
+        Position = new Point(other.Position);
+    }
+
 
     // TODO: Should it return hp after heal?
-    public void Heal()
+    public void Heal(int amount)
     {
         Console.WriteLine("Healing!");
-        Hp += 10;
+        Hp += amount;
     }
 
     public void Move()
     {
         ConsoleKeyInfo pressedKey = Console.ReadKey(true);
-        if (pressedKey.Key == ConsoleKey.A)
+        // zmienna[klawisz] = kierunek
+        if (directions.ContainsKey(pressedKey.Key))
         {
-            X -= 1;
+            Point direction = directions[pressedKey.Key];
+            Position.X += direction.X;
+            Position.Y += direction.Y;
         }
-        else if(pressedKey.Key == ConsoleKey.D)
-        {
-            X += 1;
-        }
+
+        // if (pressedKey.Key == ConsoleKey.A)
+        // {
+        //     Position.X -= 1;
+        // }
+        // else if(pressedKey.Key == ConsoleKey.D)
+        // {
+        //     Position.X += 1;
+        // }
     }
 }
 
