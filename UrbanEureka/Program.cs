@@ -22,51 +22,22 @@ Console.WriteLine(hero.Hp);
 hero.Hp = -10;
 Console.WriteLine(hero.Hp);
 
-/*
-
-###########
-#.........#
-#.........#
-#.........#
-#.........#
-#.........#
-###########
-
-*/
-// string map = @"###########
-// #.........#
-// #.........#
-// #.........#
-// #.........#
-// #.........#
-// ###########";
-
-string[] map = {
-    "###########",
-    "#.........#",
-    "#.........#",
-    "#.........#",
-    "#.........#",
-    "#.........#",
-    "###########"
-};
+Map map = new Map();
 
 Console.Clear();
 
-foreach (string row in map)
-{
-    Console.WriteLine(row);
-}
+map.Display();
 
 Console.SetCursorPosition(hero.Position.X, hero.Position.Y);
 Console.Write("@");
 
 while (true)
 {
-    hero.Move();
+    Point nextPosition = hero.GetNextPosition();
 
-    string previousRow = map[hero.PreviousPosition.Y];
-    char previousCell = previousRow[hero.PreviousPosition.X];
+    hero.Move(nextPosition);
+
+    char previousCell = map.GetCellAt(hero.PreviousPosition);
     Console.SetCursorPosition(hero.PreviousPosition.X, hero.PreviousPosition.Y);
     Console.Write(previousCell);
 

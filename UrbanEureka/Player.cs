@@ -53,28 +53,27 @@ class Player
         Hp += amount;
     }
 
-    public void Move()
+    public Point GetNextPosition()
     {
+        Point nextPosition = new Point(Position);
+        
         ConsoleKeyInfo pressedKey = Console.ReadKey(true);
-        // zmienna[klawisz] = kierunek
         if (directions.ContainsKey(pressedKey.Key))
         {
-            PreviousPosition.X = Position.X;
-            PreviousPosition.Y = Position.Y;
-
-            Point direction = directions[pressedKey.Key];
-            Position.X += direction.X;
-            Position.Y += direction.Y;
+            nextPosition.X += directions[pressedKey.Key].X;
+            nextPosition.Y += directions[pressedKey.Key].Y;
         }
 
-        // if (pressedKey.Key == ConsoleKey.A)
-        // {
-        //     Position.X -= 1;
-        // }
-        // else if(pressedKey.Key == ConsoleKey.D)
-        // {
-        //     Position.X += 1;
-        // }
+        return nextPosition;
+    }
+    
+    public void Move(Point targetPosition)
+    {
+        PreviousPosition.X = Position.X;
+        PreviousPosition.Y = Position.Y;
+        
+        Position.X = targetPosition.X;
+        Position.Y = targetPosition.Y;
     }
 }
 
