@@ -34,9 +34,13 @@ Console.Write("@");
 while (true)
 {
     Point nextPosition = hero.GetNextPosition();
+    if (!map.IsPointCorrect(nextPosition))
+    {
+        continue;
+    }
 
     hero.Move(nextPosition);
-
+    
     char previousCell = map.GetCellAt(hero.PreviousPosition);
     Console.SetCursorPosition(hero.PreviousPosition.X, hero.PreviousPosition.Y);
     Console.Write(previousCell);
