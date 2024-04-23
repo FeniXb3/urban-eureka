@@ -41,7 +41,7 @@ while (true)
 
     hero.Move(nextPosition);
     
-    char previousCell = map.GetCellAt(hero.PreviousPosition);
+    var previousCell = map.GetCellVisualAt(hero.PreviousPosition);
     Console.SetCursorPosition(hero.PreviousPosition.X, hero.PreviousPosition.Y);
     Console.Write(previousCell);
 

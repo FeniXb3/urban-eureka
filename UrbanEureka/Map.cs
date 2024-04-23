@@ -1,25 +1,34 @@
 
 public class Map
 {
-    private char[][] mapData;
+    private int[][] mapData;
+    private Dictionary<int, char> cellVisuals = new Dictionary<int, char>{
+        { 1, '#'},
+        { 0, '.'}
+    };
 
     public Map()
     {
-        mapData = new char[][] {
-            new []{'#','#','#','#','#','#','#','#','#','#','#','#',},
-            new []{'#','.','.','.','.','.','.','.','.','.','.','#',},
-            new []{'#','.','.','.','.','.','.','.','.','.','.','#',},
-            new []{'#','.','.','.','.','.','.','.','.','.','.','#',},
-            new []{'#','.','.','.','.','.','.','.','.','.','.','#',},
-            new []{'#','.','.','.','.','.','.','.','.','.','.','#',},
-            new []{'#','.','.','.','.','.','.','.','.','.','.','#',},
-            new []{'#','#','#','#','#','#','#','#','#','#','#','#',},
+        mapData = new int[][] {
+            new []{1,1,1,1,1,1,1,1,1,1,1,1,},
+            new []{1,0,0,0,0,0,0,0,0,0,0,1,},
+            new []{1,0,0,0,0,0,0,0,0,0,0,1,},
+            new []{1,0,0,0,0,0,0,0,0,0,0,1,},
+            new []{1,0,0,0,0,0,0,0,0,0,0,1,},
+            new []{1,0,0,0,0,0,0,0,0,0,0,1,},
+            new []{1,0,0,0,0,0,0,0,0,0,0,1,},
+            new []{1,1,1,1,1,1,1,1,1,1,1,1,},
         };
     }
 
-    public char GetCellAt(Point point)
+    public int GetCellAt(Point point)
     {
         return mapData[point.Y][point.X];
+    }
+
+    public char GetCellVisualAt(Point point)
+    {
+        return cellVisuals[GetCellAt(point)];
     }
 
     public void Display()
@@ -28,7 +37,9 @@ public class Map
         {
             for (int x = 0; x < mapData[y].Length; x++)
             {
-                Console.Write(mapData[y][x]);
+                var cellValue = mapData[y][x];
+                var cellVisual = cellVisuals[cellValue];
+                Console.Write(cellVisual);
             }
             Console.WriteLine();
         }
@@ -40,7 +51,7 @@ public class Map
         {
             if (point.X >= 0 && point.X < mapData[point.Y].Length)
             {
-                if (GetCellAt(point) != '#')
+                if (GetCellAt(point) != 1)
                 {
                     return true;
                 }
