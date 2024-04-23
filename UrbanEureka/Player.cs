@@ -8,6 +8,7 @@ class Player
     int hp = 90;
     public int MaxHp { get; set; } = 100;
     public Point Position { get; set; }
+    public Point PreviousPosition { get; set;}
 
     private Dictionary<ConsoleKey, Point> directions = new()
     {
@@ -17,12 +18,14 @@ class Player
     public Player(int x, int y)
     {
         Position = new Point(x, y);
+        PreviousPosition = new Point(x, y);
     }
 
     public Player(Point startingPosition)
     {
         // Position = new Point(startingPosition.X, startingPosition.Y);
         Position = new Point(startingPosition);
+        PreviousPosition = new Point(startingPosition);
         // directions.Add(ConsoleKey.A, new Point(-1, 0));
         // directions.Add(ConsoleKey.A, new Point(1, 0));
         // directions[ConsoleKey.A] = new Point(-1, 0);
@@ -39,6 +42,7 @@ class Player
         MaxHp = other.MaxHp;
         Hp = other.Hp;
         Position = new Point(other.Position);
+        PreviousPosition = new Point(other.PreviousPosition);
     }
 
 
@@ -55,6 +59,9 @@ class Player
         // zmienna[klawisz] = kierunek
         if (directions.ContainsKey(pressedKey.Key))
         {
+            PreviousPosition.X = Position.X;
+            PreviousPosition.Y = Position.Y;
+
             Point direction = directions[pressedKey.Key];
             Position.X += direction.X;
             Position.Y += direction.Y;

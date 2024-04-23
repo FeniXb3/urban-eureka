@@ -21,11 +21,55 @@ hero.Hp = 9001;
 Console.WriteLine(hero.Hp);
 hero.Hp = -10;
 Console.WriteLine(hero.Hp);
+
+/*
+
+###########
+#.........#
+#.........#
+#.........#
+#.........#
+#.........#
+###########
+
+*/
+// string map = @"###########
+// #.........#
+// #.........#
+// #.........#
+// #.........#
+// #.........#
+// ###########";
+
+string[] map = {
+    "###########",
+    "#.........#",
+    "#.........#",
+    "#.........#",
+    "#.........#",
+    "#.........#",
+    "###########"
+};
+
+Console.Clear();
+
+foreach (string row in map)
+{
+    Console.WriteLine(row);
+}
+
+Console.SetCursorPosition(hero.Position.X, hero.Position.Y);
+Console.Write("@");
+
 while (true)
 {
-    Console.Clear();
-    // Console.WriteLine($"X: {hero.X} Y: {hero.Y}");
+    hero.Move();
+
+    string previousRow = map[hero.PreviousPosition.Y];
+    char previousCell = previousRow[hero.PreviousPosition.X];
+    Console.SetCursorPosition(hero.PreviousPosition.X, hero.PreviousPosition.Y);
+    Console.Write(previousCell);
+
     Console.SetCursorPosition(hero.Position.X, hero.Position.Y);
     Console.Write("@");
-    hero.Move();
 }
