@@ -26,10 +26,12 @@ Map map = new Map();
 
 Console.Clear();
 
-map.Display();
+map.Display(new Point(2, 3));
 
-Console.SetCursorPosition(hero.Position.X, hero.Position.Y);
-Console.Write("@");
+map.DrawSomethingAt(hero.Visual, hero.Position);
+
+// Console.SetCursorPosition(hero.Position.X + map.Origin.X, hero.Position.Y + map.Origin.Y);
+// Console.Write("@");
 
 while (true)
 {
@@ -42,9 +44,12 @@ while (true)
     hero.Move(nextPosition);
     
     var previousCell = map.GetCellVisualAt(hero.PreviousPosition);
-    Console.SetCursorPosition(hero.PreviousPosition.X, hero.PreviousPosition.Y);
-    Console.Write(previousCell);
+    map.DrawSomethingAt(previousCell, hero.PreviousPosition);
+    map.DrawSomethingAt(hero.Visual, hero.Position);
 
-    Console.SetCursorPosition(hero.Position.X, hero.Position.Y);
-    Console.Write("@");
+    // Console.SetCursorPosition(hero.PreviousPosition.X + map.Origin.X, hero.PreviousPosition.Y + map.Origin.Y);
+    // Console.Write(previousCell);
+
+    // Console.SetCursorPosition(hero.Position.X + map.Origin.X, hero.Position.Y + map.Origin.Y);
+    // Console.Write("@");
 }

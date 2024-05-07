@@ -1,6 +1,7 @@
 
 public class Map
 {
+    public Point Origin { get; set;}
     private int[][] mapData;
     private Dictionary<int, char> cellVisuals = new Dictionary<int, char>{
         { 1, '#'},
@@ -20,6 +21,8 @@ public class Map
             new []{9,9,9,1,0,0,0,0,0,0,0,1,},
             new []{9,9,9,1,1,1,1,1,1,1,1,1,},
         };
+
+        Origin = new Point(0, 0);
     }
 
     public int GetCellAt(Point point)
@@ -32,10 +35,14 @@ public class Map
         return cellVisuals[GetCellAt(point)];
     }
 
-    public void Display()
+    public void Display(Point origin)
     {
+        Origin = origin;
+        
+        Console.CursorTop = origin.Y;
         for (int y = 0; y < mapData.Length; y++)
         {
+            Console.CursorLeft = origin.X;
             for (int x = 0; x < mapData[y].Length; x++)
             {
                 var cellValue = mapData[y][x];
@@ -60,5 +67,11 @@ public class Map
         }
 
         return false;
+    }
+
+    internal void DrawSomethingAt(char visual, Point position)
+    {
+        Console.SetCursorPosition(position.X + Origin.X, position.Y + Origin.Y);
+        Console.Write(visual);
     }
 }
