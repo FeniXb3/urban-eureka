@@ -74,4 +74,10 @@ public class Map
         Console.SetCursorPosition(position.X + Origin.X, position.Y + Origin.Y);
         Console.Write(visual);
     }
+
+    internal void DrawSomethingAt(string visual, Point position)
+    {
+        Console.SetCursorPosition(position.X + Origin.X, position.Y + Origin.Y);
+        Console.Write(visual);
+    }
 }
