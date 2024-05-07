@@ -4,7 +4,6 @@ Console.CursorVisible = false;
 Console.WriteLine("Hello, World!");
 Console.WriteLine("Urban Eureka, wow!!!!");
 Console.WriteLine("Goodbye, World!");
-
 // Player hero = new Player(10, 3);
 Point playerPosition = new Point(10, 3);
 Player hero = new Player(playerPosition);
@@ -45,8 +44,9 @@ while (true)
 
     hero.Move(nextPosition);
     
-    var previousCell = map.GetCellVisualAt(hero.PreviousPosition);
-    map.DrawSomethingAt(previousCell, hero.PreviousPosition);
+    // var previousCell = map.GetCellVisualAt(hero.PreviousPosition);
+    // map.DrawSomethingAt(previousCell, hero.PreviousPosition);
+    map.RedrawCellAt(hero.PreviousPosition);
     map.DrawSomethingAt(hero.Visual, hero.Position);
 
     // Console.SetCursorPosition(hero.PreviousPosition.X + map.Origin.X, hero.PreviousPosition.Y + map.Origin.Y);

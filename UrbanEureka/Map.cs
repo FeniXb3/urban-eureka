@@ -9,6 +9,12 @@ public class Map
         { 9, ' '},
     };
 
+    private Dictionary<int, ConsoleColor> colorMap = new Dictionary<int, ConsoleColor> {
+        { 1, ConsoleColor.DarkBlue},
+        { 0, ConsoleColor.Magenta},
+        { 9, ConsoleColor.Black},
+    };
+
     public Map()
     {
         mapData = new int[][] {
@@ -38,7 +44,6 @@ public class Map
     public void Display(Point origin)
     {
         Origin = origin;
-        
         Console.CursorTop = origin.Y;
         for (int y = 0; y < mapData.Length; y++)
         {
@@ -47,7 +52,10 @@ public class Map
             {
                 var cellValue = mapData[y][x];
                 var cellVisual = cellVisuals[cellValue];
+                var cellColor = colorMap[cellValue];
+                Console.ForegroundColor = cellColor;
                 Console.Write(cellVisual);
+                Console.ResetColor();
             }
             Console.WriteLine();
         }
@@ -79,5 +87,16 @@ public class Map
     {
         Console.SetCursorPosition(position.X + Origin.X, position.Y + Origin.Y);
         Console.Write(visual);
+    }
+
+    internal void RedrawCellAt(Point position)
+    {
+        var cellValue = GetCellAt(position);
+        var cellVisual = GetCellVisualAt(position);
+        var cellColor = colorMap[cellValue];
+
+        Console.ForegroundColor = cellColor;
+        DrawSomethingAt(cellVisual, position);
+        Console.ResetColor();
     }
 }
