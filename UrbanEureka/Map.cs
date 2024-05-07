@@ -1,5 +1,3 @@
-
-
 public class Map
 {
     public Point Origin { get; set;}

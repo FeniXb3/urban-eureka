@@ -24,13 +24,8 @@ class Player
 
     public Player(Point startingPosition)
     {
-        // Position = new Point(startingPosition.X, startingPosition.Y);
         Position = new Point(startingPosition);
         PreviousPosition = new Point(startingPosition);
-        // directions.Add(ConsoleKey.A, new Point(-1, 0));
-        // directions.Add(ConsoleKey.A, new Point(1, 0));
-        // directions[ConsoleKey.A] = new Point(-1, 0);
-        // directions[ConsoleKey.A] = new Point(1, 0);
         directions[ConsoleKey.D] = new Point(1, 0);
         directions[ConsoleKey.W] = new Point(0, -1);
         directions[ConsoleKey.S] = new Point(0, 1);
@@ -77,42 +72,3 @@ class Player
         Position.Y = targetPosition.Y;
     }
 }
-
-/*
-Player
-    data:
-    - hp
-    - maxhp
-    - mana
-    - maxmana
-
-    - int
-    - dex
-    - str
-    - position
-        - x
-        - y
-        - z
-
-    actions:
-    - move
-    - die
-    - heal
-    - attack
-    - dash
-
-
-*/
-
-/*
-Owca
-- ilosc futra
-- dzieci - lista Owiec
-- Narodziny() -> Owca
-{
-    Owca dziecko = new Owca()
-    dzieci.Add(dziecko)
-    dzieci.Add(new Owca());
-}
-
-*/
