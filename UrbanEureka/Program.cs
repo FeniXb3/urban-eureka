@@ -6,20 +6,29 @@ Map map = new Map();
 
 Console.Clear();
 
-map.Display(new Point(15, 3));
-
-map.DrawSomethingAt(hero.Visual, hero.Position);
-
-while (true)
+try
 {
-    Point nextPosition = hero.GetNextPosition();
-    if (!map.IsPointCorrect(nextPosition))
-    {
-        continue;
-    }
-
-    hero.Move(nextPosition);
-    
-    map.RedrawCellAt(hero.PreviousPosition);
+    map.Display(new Point(15, 3));
+        
     map.DrawSomethingAt(hero.Visual, hero.Position);
+
+    while (true)
+    {
+        Point nextPosition = hero.GetNextPosition();
+        if (!map.IsPointCorrect(nextPosition))
+        {
+            continue;
+        }
+
+        hero.Move(nextPosition);
+        
+        map.RedrawCellAt(hero.PreviousPosition);
+        map.DrawSomethingAt(hero.Visual, hero.Position);
+    }
 }
+catch (ArgumentOutOfRangeException exception)
+{
+    Console.WriteLine("Terminal window is to small, make it bigger");
+}
+
+
