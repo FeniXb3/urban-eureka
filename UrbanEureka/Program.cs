@@ -5,6 +5,8 @@ Player hero = new Player("@", playerPosition);
 
 Player anotherHero = new Player("Q", new Point(2, 1));
 
+Enemy troll = new Enemy("T", new Point(4, 4));
+
 Map map = new Map();
 Point mapOrigin = new Point(15, 3);
 Console.Clear();
@@ -16,6 +18,7 @@ if (map.Size.X + mapOrigin.X >= 0 && map.Size.X + mapOrigin.X < Console.BufferWi
         
     map.DrawSomethingAt(hero.Visual, hero.Position);
     map.DrawSomethingAt(anotherHero.Visual, anotherHero.Position);
+    map.DrawSomethingAt(troll.Visual, troll.Position);
 
 
     while (true)
@@ -37,6 +40,16 @@ if (map.Size.X + mapOrigin.X >= 0 && map.Size.X + mapOrigin.X < Console.BufferWi
             
             map.RedrawCellAt(anotherHero.PreviousPosition);
             map.DrawSomethingAt(anotherHero.Visual, anotherHero.Position);
+        }
+
+         //-------
+        Point trollNextPosition = troll.GetNextPosition();
+        if (map.IsPointCorrect(trollNextPosition))
+        {
+            troll.Move(trollNextPosition);
+            
+            map.RedrawCellAt(troll.PreviousPosition);
+            map.DrawSomethingAt(troll.Visual, troll.Position);
         }
 
        
