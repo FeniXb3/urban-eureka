@@ -1,6 +1,20 @@
 public class Map
 {
     public Point Origin { get; set;}
+    public Point Size
+    {
+        get
+        {
+            // chce zwrocic punkt, ktory bedie mial
+            // x rowny rozmiarowi najdluzszego wiersza
+            // y rowny liczbie wierszy
+            int y = mapData.Length;
+            int x = mapData[0].Length;
+
+            return new Point(x, y);
+        }
+    }
+
     private int[][] mapData;
     private Dictionary<CellType, char> cellVisuals = new Dictionary<CellType, char>{
         { CellType.WallCorner, '+'},
