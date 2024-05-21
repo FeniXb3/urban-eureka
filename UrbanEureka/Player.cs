@@ -22,8 +22,9 @@ class Player
         PreviousPosition = new Point(x, y);
     }
 
-    public Player(Point startingPosition)
+    public Player(string visual, Point startingPosition)
     {
+        Visual = visual;
         Position = new Point(startingPosition);
         PreviousPosition = new Point(startingPosition);
         directions[ConsoleKey.D] = new Point(1, 0);
