@@ -1,27 +1,7 @@
 public class Map
 {
     public Point Origin { get; set;}
-    public Point Size
-    {
-        get
-        {
-            // chce zwrocic punkt, ktory bedie mial
-            // x rowny rozmiarowi najdluzszego wiersza
-            // y rowny liczbie wierszy
-            int y = mapData.Length;
-            int x = 0;
-
-            foreach (int[] row in mapData)
-            {
-                if (row.Length > x)
-                {
-                    x = row.Length;
-                }
-            }
-
-            return new Point(x, y);
-        }
-    }
+    public Point Size { get; }
 
     private int[][] mapData;
     private Dictionary<CellType, char> cellVisuals = new Dictionary<CellType, char>{
@@ -60,6 +40,21 @@ public class Map
             new []{9,9,9,1,2,2,2,2,2,2,2,1,},
         };
 
+        // chce zwrocic punkt, ktory bedie mial
+        // x rowny rozmiarowi najdluzszego wiersza
+        // y rowny liczbie wierszy
+        int y = mapData.Length;
+        int x = 0;
+
+        foreach (int[] row in mapData)
+        {
+            if (row.Length > x)
+            {
+                x = row.Length;
+            }
+        }
+
+        Size = new Point(x, y);
         Origin = new Point(0, 0);
     }
 
