@@ -9,7 +9,15 @@ public class Map
             // x rowny rozmiarowi najdluzszego wiersza
             // y rowny liczbie wierszy
             int y = mapData.Length;
-            int x = mapData[0].Length;
+            int x = 0;
+
+            foreach (int[] row in mapData)
+            {
+                if (row.Length > x)
+                {
+                    x = row.Length;
+                }
+            }
 
             return new Point(x, y);
         }
@@ -43,9 +51,9 @@ public class Map
     {
         mapData = new int[][] {
             new []{1,2,2,2,1,9,9,1,2,2,2,1,},
-            new []{3,0,0,0,1,2,2,1,0,0,0,3,},
-            new []{3,0,0,0,0,0,0,0,1,0,0,3,},
-            new []{1,2,2,1,2,2,1,4,3,0,4,3,},
+            new []{3,0,0,0,1,2,2,1,0,0,0,1,2,2,2,2,2,2,1,},
+            new []{3,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,3,},
+            new []{1,2,2,1,2,2,1,4,3,0,4,1,2,2,2,2,2,2,1,},
             new []{9,9,9,3,0,0,0,4,3,0,4,3,},
             new []{9,9,9,3,0,0,0,1,1,0,0,3,},
             new []{9,9,9,3,0,0,0,0,0,0,0,3,},
