@@ -5,6 +5,8 @@ Player hero = new Player("@", playerPosition);
 
 ComposedPlayer composedPlayer = new ComposedPlayer("@", playerPosition);
 
+ComposedEnemy composedEnemy = new ComposedEnemy("T", new Point(4, 4)); 
+
 // Player anotherHero = new Player("Q", new Point(2, 1));
 
 Enemy troll = new Enemy("T", new Point(4, 4));
@@ -27,6 +29,7 @@ if (map.Size.X + mapOrigin.X >= 0 && map.Size.X + mapOrigin.X < Console.BufferWi
     map.Display(mapOrigin);
 
     map.DrawSomethingAt(composedPlayer.VisualComponent.Visual, composedPlayer.PositionComponent.Position);
+    map.DrawSomethingAt(composedEnemy.VisualComponent.Visual, composedEnemy.PositionComponent.Position);
 
     // foreach (var character in characters)
     // {
@@ -42,6 +45,15 @@ if (map.Size.X + mapOrigin.X >= 0 && map.Size.X + mapOrigin.X < Console.BufferWi
 
             map.RedrawCellAt(composedPlayer.Movement.PreviousPosition);
             map.DrawSomethingAt(composedPlayer.VisualComponent.Visual, composedPlayer.PositionComponent.Position);
+        }
+
+        nextPosition = composedEnemy.Movement.GetNextPosition();
+        if (map.IsPointCorrect(nextPosition))
+        {
+            composedEnemy.Movement.Move(nextPosition);
+
+            map.RedrawCellAt(composedEnemy.Movement.PreviousPosition);
+            map.DrawSomethingAt(composedEnemy.VisualComponent.Visual, composedEnemy.PositionComponent.Position);
         }
 
         // foreach (var character in characters)
