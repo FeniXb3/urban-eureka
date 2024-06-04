@@ -4,7 +4,7 @@ class ComposedPlayer
     public HealthComponent Health { get; }
     public PositionComponent PositionComponent { get; }
     public MovementComponent Movement { get; }
-    public InputComponent InputComponent { get; }
+    public IInputComponent InputComponent { get; }
 
     public ComposedPlayer(string visual, Point startingPosition)
     {
