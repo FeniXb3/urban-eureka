@@ -3,7 +3,7 @@
 Point playerPosition = new Point(10, 3);
 Player hero = new Player("@", playerPosition);
 
-ComposedPlayer composedPlayer = new ComposedPlayer(playerPosition);
+ComposedPlayer composedPlayer = new ComposedPlayer("@", playerPosition);
 
 // Player anotherHero = new Player("Q", new Point(2, 1));
 

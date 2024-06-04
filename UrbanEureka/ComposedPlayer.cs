@@ -6,9 +6,9 @@ class ComposedPlayer
     public MovementComponent Movement { get; }
     public InputComponent InputComponent { get; }
 
-    public ComposedPlayer(Point startingPosition)
+    public ComposedPlayer(string visual, Point startingPosition)
     {
-        VisualComponent = new VisualComponent();
+        VisualComponent = new VisualComponent(visual);
         Health = new HealthComponent();
         PositionComponent = new PositionComponent(startingPosition);
         InputComponent = new InputComponent();
