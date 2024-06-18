@@ -13,4 +13,9 @@ internal class HealthComponent
         Console.WriteLine("Healing!");
         Hp += amount;
     }
+
+    public void TakeDamage(int amount)
+    {
+        Hp -= amount;
+    }
 }

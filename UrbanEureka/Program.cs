@@ -30,16 +30,14 @@ if (map.Size.X + mapOrigin.X >= 0 && map.Size.X + mapOrigin.X < Console.BufferWi
             map.DrawSomethingAt(composedPlayer.VisualComponent.Visual, composedPlayer.PositionComponent.Position);
             // 1
 
-            int distanceX = Math.Abs(composedPlayer.PositionComponent.Position.X - composedEnemy.PositionComponent.Position.X);
-            int distanceY = Math.Abs(composedPlayer.PositionComponent.Position.Y - composedEnemy.PositionComponent.Position.Y);
-
-            if ((distanceX == 1 && distanceY == 0) || (distanceX == 0 && distanceY == 1))
+            if (composedPlayer.AttackComponent.IsTargetInRange(composedEnemy.PositionComponent.Position))
             {
                 Console.SetCursorPosition(2, 0);
-                Console.WriteLine("Enemy nearby! Press Any key to contiune...");
+                Console.WriteLine($"Enemy with health {composedEnemy.Health.Hp} nearby! Atacking! Press Any key to contiune...");
                 Console.ReadKey(true);
+                composedPlayer.AttackComponent.Attack(composedEnemy.Health);
                 Console.SetCursorPosition(2, 0);
-                Console.WriteLine("Enemy nearby!                              ");
+                Console.WriteLine($"Enemy with health {composedEnemy.Health.Hp} nearby! Atacked!                               ");
             }
             else
             {

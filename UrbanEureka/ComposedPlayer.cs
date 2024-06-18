@@ -5,6 +5,7 @@ class ComposedPlayer
     public PositionComponent PositionComponent { get; }
     public MovementComponent Movement { get; }
     public IInputComponent InputComponent { get; }
+    public AttackComponent AttackComponent { get; }
 
     public ComposedPlayer(string visual, Point startingPosition)
     {
@@ -13,5 +14,6 @@ class ComposedPlayer
         PositionComponent = new PositionComponent(startingPosition);
         InputComponent = new KeyboardInputComponent();
         Movement = new MovementComponent(PositionComponent, InputComponent);
+        AttackComponent = new AttackComponent(PositionComponent);
     }
 }
