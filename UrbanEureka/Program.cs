@@ -28,7 +28,27 @@ if (map.Size.X + mapOrigin.X >= 0 && map.Size.X + mapOrigin.X < Console.BufferWi
 
             map.RedrawCellAt(composedPlayer.Movement.PreviousPosition);
             map.DrawSomethingAt(composedPlayer.VisualComponent.Visual, composedPlayer.PositionComponent.Position);
+            // 1
+
+            int distanceX = Math.Abs(composedPlayer.PositionComponent.Position.X - composedEnemy.PositionComponent.Position.X);
+            int distanceY = Math.Abs(composedPlayer.PositionComponent.Position.Y - composedEnemy.PositionComponent.Position.Y);
+
+            if ((distanceX == 1 && distanceY == 0) || (distanceX == 0 && distanceY == 1))
+            {
+                Console.SetCursorPosition(2, 0);
+                Console.WriteLine("Enemy nearby! Press Any key to contiune...");
+                Console.ReadKey(true);
+                Console.SetCursorPosition(2, 0);
+                Console.WriteLine("Enemy nearby!                              ");
+            }
+            else
+            {
+                Console.SetCursorPosition(2, 0);
+                Console.WriteLine("                                              ");
+            }
         }
+
+        // 2
 
         nextPosition = composedEnemy.Movement.GetNextPosition();
         if (map.IsPointCorrect(nextPosition))
